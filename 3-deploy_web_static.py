@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-""" Fabric script that generates .tgz from web_static dir and deploys to servers
+""" Fabric script that generates .tgz from web_static dir and deploys 
+to servers
 """
 import os
 from datetime import datetime
