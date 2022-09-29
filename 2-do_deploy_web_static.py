@@ -4,7 +4,8 @@
 from fabric.api import local, env, run, put, sudo
 from fabric import operations
 from datetime import datetime
-import os
+
+
 env.hosts = ['3.81.28.185', '3.238.90.118']
 
 
