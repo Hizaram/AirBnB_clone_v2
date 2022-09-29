@@ -35,7 +35,7 @@ def do_deploy(archive_path):
             run('ln -s {}{} {}'.format(releases, archive_dir, current))
 
             return True
-        except:
+        except as e:
             return False
 
     else:
