@@ -4,38 +4,13 @@
 from fabric.api import local, env, run, put, sudo
 from datetime import datetime
 from fabric import operations
-import os
 
 env.hosts = ['3.81.28.185', '3.238.90.118']
 
 
-def do_pack():
-    """ The do_pack function that generates the .tgz archive"""
-    # Create versions dir if it doesn't exist
-    operations.local("mkdir -p versions")
-
-    # format of file to be made:
-    # web_static_<year><month><day><hour><minute><second>.tgz
-    format1 = "%Y%m%d%H%M%S"
-    file_time = datetime.utcnow().strftime(format1)
-    filename = "web_static_"
-    filename += file_time
-    filename += ".tgz"
-
-    # Create the .tgz archive
-    path = operations.local(
-            "tar -cvzf 'versions/{}' web_static".
-            format(filename))
-
-    # If archive was made, return. Otherwise , return None
-    if path is not None:
-        return path
-    else:
-        return None
-
 def do_deploy(archive_path):
     """Function that deploys archive to web_servers"""
-    if os.path.isfile(archive_path):
+    if archive_path:
         archive_file = archive_path.split("/")[1]
         archive_dir = archive_file.split(".")[0]
         releases = '/data/web_static/releases/'
@@ -61,7 +36,7 @@ def do_deploy(archive_path):
             run('ln -s {}{} {}'.format(releases, archive_dir, current))
 
             return True
-        except as e:
+        except:
             return False
 
     else:
