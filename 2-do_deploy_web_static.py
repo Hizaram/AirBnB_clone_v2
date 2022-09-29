@@ -32,6 +32,7 @@ def do_pack():
     else:
         return None
 
+
 def do_deploy(archive_path):
     """ Function that deploys archive to web_servers"""
     if archive_path:
