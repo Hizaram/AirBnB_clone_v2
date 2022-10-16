@@ -15,6 +15,7 @@ from sqlalchemy.orm import scoped_session
 from sqlalchemy.orm.session import sessionmaker, Session
 from models import classes
 
+
 class DBStorage:
     """DBStorage of the AirBnB project"""
     __engine = None
@@ -45,15 +46,14 @@ class DBStorage:
                 cls = classes[cls]
             objs = self.__session.query(cls)
         else:
-            objs = self.__session.query \
-                       (User, State, City, Amenity, Place, Review)
+            objs = self.__session.query(
+                    User, State, City, Amenity, Place, Review)
         for row in objs:
             # populate dict with objects from storage
             key = '{}.{}'.format(type(row).__name__, row.id)
 
             obj_dict[key] = row
         return obj_dict
-
 
     def new(self, obj):
         """Adds object to current database session"""
