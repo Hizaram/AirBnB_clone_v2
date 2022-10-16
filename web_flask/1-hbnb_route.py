@@ -11,6 +11,7 @@ def hello_holberton():
     """Return the welcome message"""
     return "Hello HBNB!"
 
+
 @app.route('/hbnb', strict_slashes=False)
 def hello_hbnb():
     """Return HBNB when navigated to"""
